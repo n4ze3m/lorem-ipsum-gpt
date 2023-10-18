@@ -66,7 +66,7 @@ export const chatCompletionController = (req: Request, res: Response) => {
       function streamChunk() {
         if (index < chunks.length) {
           const dataToSend = { ...baseData };
-          dataToSend.choices[0].delta.content = chunks[index];
+          dataToSend.choices[0].delta.content = chunks[index] + " ";
           res.write(`data: ${JSON.stringify(dataToSend)}\n\n`);
           index++;
           setTimeout(streamChunk, 1000);
